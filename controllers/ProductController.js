@@ -45,7 +45,42 @@ const ProductController = {
         error: error.message
       });
     }
-  }
+  },
+  async getAll(req, res) {
+        try {
+            const product = await Product.findAll({
+                // include: [User]
+                include: [{ model: Orders, attributes: ["nameProduct"] }]
+            })
+            res.status(200).send(products)
+        } catch (error) {
+            console.log(err)
+            res.status(500).send({ message: 'Ha habido un problema al cargar la orden' })
+        }
+    },
+    async getById(req, res) {
+        try {
+            const product = await Product.findByPk(req.params.id, {
+            })
+            res.status(200).send(product)
+        } catch (error) {
+            res.status(500).send({ message: 'Ha habido un problema al cargar la orden' })
+        }
+    },
+    async getOneByName(req, res) {
+        try {
+            const product = await Product.findOne({
+                where: {
+                    title: {
+                        [Op.like]: `%${req.params.title}%`
+                    }
+                },
+            })
+            res.status(200).send(product)
+        } catch (error) {
+            res.status(500).send({ message: 'Ha habido un problema al cargar la publicación' })
+        }
+    },
 };
 
 module.exports = ProductController;
