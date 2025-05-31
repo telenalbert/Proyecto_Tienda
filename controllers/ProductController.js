@@ -105,9 +105,27 @@ const ProductController = {
         }
     },
 
-
     //Controlador Get by Price
 
+    async getbyPrice(req,res){
+      try {
+        const price = parseFloat(req.params.price);
+        const product = await Product.findAll({
+          where: {
+            price: {
+                        [Op.eq]: price
+                    }
+          }
+        }
+        )
+        res.status(200).json(product)
+      } catch (error) {
+        console.error(error)
+        res.status(500).send({ message: "No se ha podido encontrar el Producto"})
+      }
+    },
+
+    //Controlador Ordenar por Precio
 
     // Controlador Get by ID
 
