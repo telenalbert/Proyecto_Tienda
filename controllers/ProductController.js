@@ -127,6 +127,18 @@ const ProductController = {
 
     //Controlador Ordenar por Precio
 
+    async orderByPrice (req, res){
+      try {
+        const product = await Product.findAll({
+          order: [['price', 'DESC']]
+        })
+        res.status(200).send(product)
+      } catch (error) {
+        console.error(error)
+        res.status(500).send({ message: "No se ha podido ordenar"})
+      }
+    },
+
     // Controlador Get by ID
 
     async getById(req, res) {
