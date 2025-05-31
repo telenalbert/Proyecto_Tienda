@@ -1,8 +1,11 @@
-const { where } = require("sequelize");
+const { where }             = require("sequelize");
 const { Product, Category } = require("../models");
-const product = require("../models/product");
+const product               = require("../models/product");
 
 const ProductController = {
+  
+  //Controlador CREAR
+  
   async insert(req, res) {
     try {
       if (!req.body.nameProduct || !req.body.price) {
@@ -46,27 +49,56 @@ const ProductController = {
       });
     }
   },
+
+  //Controlador UPDATE
+
+
+  //Controlador DELETE
+
+
+  // Controlador GET ALL
+
   async getAll(req, res) {
         try {
             const product = await Product.findAll({
-                // include: [User]
-                include: [{ model: Orders, attributes: ["nameProduct"] }]
-            })
-            res.status(200).send(products)
-        } catch (error) {
-            console.log(err)
-            res.status(500).send({ message: 'Ha habido un problema al cargar la orden' })
-        }
-    },
-    async getById(req, res) {
-        try {
-            const product = await Product.findByPk(req.params.id, {
+                include: [{ 
+                  model: Category, 
+                  as: "Categories",
+                  through: {attributes: [] },
+                }
+                ]
             })
             res.status(200).send(product)
         } catch (error) {
-            res.status(500).send({ message: 'Ha habido un problema al cargar la orden' })
+            console.error(error)
+            res.status(500).send({ message: 'Ha habido un problema al cargar los productos' })
         }
     },
+
+
+    //Controlador Get by Price
+
+
+    // Controlador Get by ID
+
+    async getById(req, res) {
+        try {
+            const product = await Product.findByPk(req.params.id, {
+              include: [{ 
+                  model: Category, 
+                  as: "Categories",
+                  through: {attributes: [] },
+                }
+                ]
+            })
+            res.status(200).send(product)
+        } catch (error) {
+            res.status(500).send({ message: 'Ha habido un problema al cargar el producto' })
+        }
+    },
+
+    //Controlador Get by NAME
+
     async getOneByName(req, res) {
         try {
             const product = await Product.findOne({
