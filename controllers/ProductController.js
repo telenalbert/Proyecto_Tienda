@@ -1,6 +1,8 @@
 const { where }             = require("sequelize");
-const { Product, Category } = require("../models");
+const { Product, Category, Sequelize } = require("../models");
+const { Op }                = Sequelize
 const product               = require("../models/product");
+
 
 const ProductController = {
   
@@ -52,9 +54,37 @@ const ProductController = {
 
   //Controlador UPDATE
 
+  async update(req, res) {
+    
+    try {
+      await Product.update(req.body,
+            {
+                where: {
+                    id: req.params.id
+                }
+            })
+        res.send('Producto actualizado con éxito');
+      
+    } catch (error) {
+      console.error(error)
+      res.status(500).send({ message: "El producto no ha podido ser actualizado"})
+    }
+        
+    },
+
 
   //Controlador DELETE
 
+    async delete(req, res) {
+            await Product.destroy({
+                where: {
+                    id: req.params.id
+                }
+            })
+            res.send(
+                'El Producto ha sido eliminado con éxito'
+            )
+        },
 
   // Controlador GET ALL
 
@@ -103,14 +133,22 @@ const ProductController = {
         try {
             const product = await Product.findOne({
                 where: {
-                    title: {
-                        [Op.like]: `%${req.params.title}%`
+                    nameProduct: {
+                        [Op.like]: `%${req.params.nameProduct}%`
                     }
                 },
+                attributes: { exclude: ['OrderId'] },
+                include: [{ 
+                  model: Category, 
+                  as: "Categories",
+                  through: {attributes: [] },
+                }
+                ],
             })
             res.status(200).send(product)
         } catch (error) {
-            res.status(500).send({ message: 'Ha habido un problema al cargar la publicación' })
+            console.error(error)
+            res.status(500).send({ message: 'Ha habido un problema al cargar el producto' })
         }
     },
 };
