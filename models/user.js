@@ -53,7 +53,11 @@ User.init({
       }
     },
     password: DataTypes.STRING,
-    role: DataTypes.STRING
+    role: DataTypes.STRING,
+    confirmed: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  }
     
   }, {
     sequelize,

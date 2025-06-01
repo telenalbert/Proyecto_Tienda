@@ -60,7 +60,7 @@ const UserController = {
                 } catch (tokenError) {
                 console.error("Error creando token:", tokenError);
                 }
-            res.send({ message: 'Bienvenid@ ' + user.name, user, token });
+            res.send({ message: 'Bienvenid@ ' + user.fullName, user, token });
         } catch (error) {
             console.log(error)
             res.status(500).send(error)
@@ -86,19 +86,27 @@ const UserController = {
         res.send('Usuario actualizado con éxito');
     },
     async confirm(req, res) {
-        try {
-            const token = req.params.emailToken
-            const payload = jwt.verify(token, jwt_secret)
-            await User.update({ confirmed: true }, {
-                where: {
-                    email: payload.email
-                }
-            })
-            res.status(201).send("Usuario confirmado con éxito");
-        } catch (error) {
-            console.error(error)
+    try {
+        const token = req.params.emailToken;
+        const payload = jwt.verify(token, jwt_secret);
+
+        const [updatedRows] = await User.update(
+            { confirmed: true },
+            {
+                where: { email: payload.email }
+            }
+        );
+
+        if (updatedRows === 0) {
+            return res.status(404).send("No se encontró el usuario o ya estaba confirmado.");
         }
-    },
+
+        res.status(200).send("Usuario confirmado con éxito");
+    } catch (error) {
+        console.error("Error al confirmar usuario:", error);
+        res.status(500).send("Error al confirmar el usuario");
+    }
+},
     async logout(req, res) {
         try {
             await Token.destroy({
