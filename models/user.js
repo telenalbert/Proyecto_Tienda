@@ -11,14 +11,38 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       User.hasOne(models.Order)
+      User.hasMany(models.Token)
       // define association here
     }
   }
   User.init({
-    fullName: DataTypes.STRING,
-    email: DataTypes.STRING,
+    fullName: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      notNull: {
+        msg: "Por favor introduce tu nombre"
+      },
+    },
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Por favor introduce tu correo",
+        },
+        isEmail: {
+          msg: "Por favor introduce un correo valido",
+        },
+      },
+    },
     password: DataTypes.STRING,
-    role: DataTypes.STRING
+    role: DataTypes.STRING,
+    confirmed: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    }
   }, {
     sequelize,
     modelName: 'User',
