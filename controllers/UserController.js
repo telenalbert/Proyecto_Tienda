@@ -1,4 +1,4 @@
-/*
+
 const { User, Post, Token, Sequelize } = require('../models/index.js');
 const { Op } = Sequelize
 const bcrypt = require("bcryptjs")
@@ -31,9 +31,9 @@ const UserController = {
             });
 
         } catch (error) {
-            console.log(error)
-            next(error)
-            // res.status(500).send(error) //sustituido por next(error)
+            console.error(error)
+            //next(error)
+            res.status(500).send(error) //sustituido por next(error)
         }
     },
     async login(req, res) {
@@ -54,7 +54,12 @@ const UserController = {
                 return res.status(400).send({ message: "Usuario o contraseña incorrectos" })
             }
             const token = jwt.sign({ id: user.id }, jwt_secret);
-            await Token.create({ token, UserId: user.id });
+            try {
+                await Token.create({ token, UserId: user.id });
+                console.log("Token creado correctamente");
+                } catch (tokenError) {
+                console.error("Error creando token:", tokenError);
+                }
             res.send({ message: 'Bienvenid@ ' + user.name, user, token });
         } catch (error) {
             console.log(error)
@@ -64,7 +69,7 @@ const UserController = {
     async getAll(req, res) {
         try {
             const users = await User.findAll({
-                include: [Post]
+                include: [Order]
             })
             res.status(200).send({ msg: 'Todos los usuarios', users })
         } catch (error) {
@@ -84,7 +89,7 @@ const UserController = {
         try {
             const token = req.params.emailToken
             const payload = jwt.verify(token, jwt_secret)
-            User.update({ confirmed: true }, {
+            await User.update({ confirmed: true }, {
                 where: {
                     email: payload.email
                 }
@@ -128,4 +133,4 @@ const UserController = {
 }
 
 module.exports = UserController
-*/
+
