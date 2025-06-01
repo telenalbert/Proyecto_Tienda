@@ -19,10 +19,50 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Product.init({
-    nameProduct: DataTypes.STRING,
-    descriptionProduct: DataTypes.STRING,
-    price: DataTypes.FLOAT,
+//   Product.init({
+//     nameProduct: DataTypes.STRING,
+//     descriptionProduct: DataTypes.STRING,
+//     price: DataTypes.FLOAT,
+//     orderId: DataTypes.INTEGER
+//   }, {
+//     sequelize,
+//     modelName: 'Product',
+//   });
+//   return Product;
+// };
+
+
+ Product.init({
+    nameProduct: { 
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Por favor introduce el nombre del producto",
+        },
+      },
+    },
+    descriptionProduct:{
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull:  {
+          msg: "Por favor introduce la descripción",
+        },
+      },
+    },
+    price: {
+      type: DataTypes.FLOAT,
+      allowNull:false,
+      validate: {
+        notNull: {
+          msg: "Por favor introduce el precio",
+        },
+        isFloat: {
+          msg: "El precio deber ser un número",
+        }
+      }
+    },
     orderId: DataTypes.INTEGER
   }, {
     sequelize,

@@ -14,11 +14,46 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  User.init({
-    fullName: DataTypes.STRING,
-    email: DataTypes.STRING,
+
+  //COdigo DE TRINI
+//   User.init({
+//     fullName: DataTypes.STRING,
+//     email: DataTypes.STRING,
+//     password: DataTypes.STRING,
+//     role: DataTypes.STRING
+//   }, {
+//     sequelize,
+//     modelName: 'User',
+//   });
+//   return User;
+// };
+
+//Código Bea para validaciones de user:
+User.init({
+    fullName: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      notNull: {
+        msg: "Por favor introduce tu nombre",
+      },
+    },
+  },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Por favor introduce tu correo"
+        },
+        isEmail: {
+          msg: "Por favor introduce un corre valido"
+        }
+      }
+    },
     password: DataTypes.STRING,
     role: DataTypes.STRING
+    
   }, {
     sequelize,
     modelName: 'User',
