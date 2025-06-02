@@ -1,5 +1,5 @@
 
-const { User, Post, Token, Sequelize } = require('../models/index.js');
+const { User, Order, Token, Sequelize } = require('../models/index.js');
 const { Op } = Sequelize
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken");
@@ -73,6 +73,7 @@ const UserController = {
             })
             res.status(200).send({ msg: 'Todos los usuarios', users })
         } catch (error) {
+            console.error(error)
             res.status(500).send(error)
         }
     },

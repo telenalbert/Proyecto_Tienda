@@ -1,16 +1,20 @@
-// 'use strict';
+'use strict';
 
-//  @type {import('sequelize-cli').Migration} */
-// module.exports = {
-//   async up (queryInterface, Sequelize) {
+/** @type {import('sequelize-cli').Migration}*/
+module.exports = {
+  async up (queryInterface, Sequelize) {
   
-//     return queryInterface.changeColumn ("Users", "email", {
-//       type:Sequelize.STRING,
-//       unique:true
-//     });
-//   },
+    return queryInterface.changeColumn ("Users", "email", {
+      type:Sequelize.STRING,
+      unique:true
+    });
+  },
 
-//   async down (queryInterface, Sequelize) {
-   
-//   }
-// };
+  async down (queryInterface, Sequelize) {
+   return queryInterface.changeColumn("Users", "email", {
+      type: Sequelize.STRING,
+      unique:false
+    });
+  }
+};
+

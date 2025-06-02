@@ -19,7 +19,15 @@ module.exports = {
         type: Sequelize.FLOAT
       },
       orderId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        /*código extra para poder ver la relación product-order en Workbench - aún no se ve*/
+        references: {
+          model: 'Orders', // nombre de la tabla referenciada
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL'
+        /*fin del código extra*/
       },
       createdAt: {
         allowNull: false,
