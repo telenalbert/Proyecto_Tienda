@@ -22,6 +22,8 @@ La aplicación está construida con Node.js, usando Sequelize para gestionar la 
 
 - Nodemon (v3.1.10) — solo desarrollo
 
+- Postman
+
 ---
 
 ## Requisitos 👀
@@ -153,6 +155,7 @@ El resto de ejemplos están en la **documentación de Postman**.📖
 - `belongsTo User` (la orden pertenece a **un usuario**)
 
 Los ejemplos de uso de postman están en su respectiva **documentación**.📖
+[Click aquí para ir](https://documenter.getpostman.com/view/45240432/2sB2qgfedv)
 
 ## Product 🎮
 
@@ -178,6 +181,7 @@ Los ejemplos de uso de postman están en su respectiva **documentación**.📖
 - `belongsToMany Product` (**muchos a muchos** con productos, a través de **ProductCategory**)
 
 Los ejemplos de uso de postman están en su respectiva **documentación**.📖
+[Click aquí para ir](https://documenter.getpostman.com/view/45240432/2sB2qgfedv)
 
 ## ProductCategory (tabla intermedia) 🔧
 
@@ -188,6 +192,7 @@ Los ejemplos de uso de postman están en su respectiva **documentación**.📖
 No tiene asociaciones explícitas en el modelo, pero es la **tabla puente** para la relación muchos a muchos **Product** ↔ **Category**.
 
 Los ejemplos de uso de postman están en su respectiva **documentación**.📖
+[Click aquí para ir](https://documenter.getpostman.com/view/45240432/2sB2qgfedv)
 
 ## Token 🙊
 
@@ -199,6 +204,7 @@ Los ejemplos de uso de postman están en su respectiva **documentación**.📖
 - `belongsTo User` (cada token pertenece a **un usuario**, para controlar sesiones)
 
 Los ejemplos de uso de postman están en su respectiva **documentación**.📖
+[Click aquí para ir](https://documenter.getpostman.com/view/45240432/2sB2qgfedv)
 
 ![Referencia Visual Relaciones](/assets/tablas.jpg.jpg)
 
