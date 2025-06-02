@@ -15,22 +15,13 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "productId",
         as: "Categories"
       }),
-      Product.belongsTo(models.Order)
+      Product.belongsTo(models.Order, {
+        foreignKey: "orderId",
+        as: "Orders"
+      });
       // define association here
     }
   }
-//   Product.init({
-//     nameProduct: DataTypes.STRING,
-//     descriptionProduct: DataTypes.STRING,
-//     price: DataTypes.FLOAT,
-//     orderId: DataTypes.INTEGER
-//   }, {
-//     sequelize,
-//     modelName: 'Product',
-//   });
-//   return Product;
-// };
-
 
  Product.init({
     nameProduct: { 

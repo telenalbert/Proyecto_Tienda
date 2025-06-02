@@ -5,7 +5,7 @@ module.exports = {
   async up (queryInterface, Sequelize) {
    await queryInterface.bulkInsert('Products', [
       {
-        nameProduct: 'Demo-Product 1:The Legend of Zelda',
+        nameProduct: 'The Legend of Zelda',
         descriptionProduct: 'Juego de aventuras y exploración en un mundo abierto',
         price: 59.99,
         orderId: 1, // Asegúrate de que esta Order exista
@@ -13,7 +13,7 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        nameProduct: 'Demo-Product 2:Super Mario Odyssey',
+        nameProduct: 'Super Mario Odyssey',
         descriptionProduct: 'Plataformas en 3D con exploración y puzzles',
         price: 49.99,
         orderId: 1,
@@ -21,7 +21,7 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        nameProduct: 'Demo-Product 3:Hades',
+        nameProduct: 'Hades',
         descriptionProduct: 'Roguelike de acción con historia dinámica',
         price: 24.99,
         orderId: 2,
@@ -29,7 +29,7 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        nameProduct: 'Demo-Product 4:Stardew Valley',
+        nameProduct: 'Stardew Valley',
         descriptionProduct: 'Simulador de granja con exploración y relaciones',
         price: 14.99,
         orderId: 2,
@@ -37,7 +37,7 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        nameProduct: 'Demo-Product 5:Celeste',
+        nameProduct: 'Celeste',
         descriptionProduct: 'Plataformas desafiante con gran narrativa',
         price: 19.99,
         orderId: 3,
