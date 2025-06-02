@@ -200,6 +200,8 @@ Los ejemplos de uso de postman están en su respectiva **documentación**.📖
 
 Los ejemplos de uso de postman están en su respectiva **documentación**.📖
 
+![Referencia Visual Relaciones](/assets/tablas.jpg.jpg)
+
 ## Importante 👀❗
 - En la consulta de **órdenes** debes usar el alias `'Products'` para incluir los productos relacionados con la orden.
 
