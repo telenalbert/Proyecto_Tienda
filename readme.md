@@ -1,7 +1,7 @@
-# Proyecto Tienda Elite de Videojuegos
+# Proyecto Tienda Élite de Videojuegos
 
 ## Descripción
-Este proyecto es una tienda elite de videojuegos donde los usuarios pueden registrarse, autenticarse y realizar una única compra.  
+Este proyecto es una tienda élite de videojuegos donde los usuarios pueden registrarse, autenticarse y realizar una única compra.  
 La aplicación está construida con Node.js, usando Sequelize para gestionar la base de datos MySQL y asegurando la autenticación y autorización con JWT.
 
 ---
@@ -202,8 +202,6 @@ Los ejemplos de uso de postman están en su respectiva documentación.
 Los ejemplos de uso de postman están en su respectiva documentación.
 
 ## Importante
-- En el modelo **Product**, la relación con **Order** es `belongsTo`, usando `orderId` en la tabla **Product**. Esto implica que cada producto está asignado a una orden concreta.
-
 - En la consulta de órdenes debes usar el alias `'Products'` para incluir los productos relacionados con la orden.
 
 - La relación muchos a muchos entre productos y categorías está correctamente definida usando la tabla **ProductCategory**.
@@ -216,8 +214,6 @@ Los ejemplos de uso de postman están en su respectiva documentación.
 
 - El token JWT debe enviarse en el header `Authorization`.
 - Para confirmar el usuario, se envía un email con un enlace con token válido por 48h.
-
-- Los modelos usan Sequelize y relaciones muchos a muchos para productos-categorías.
 
 - Al hacer logout, el token se elimina de la base de datos para invalidarlo.
 
@@ -313,23 +309,7 @@ npm run dev
 ```
 Esto levantará el servidor con nodemon para recarga automática.
 
-## Notas
-- En el modelo **Product**, la relación con **Order** es `belongsTo`, usando `orderId` en la tabla **Product**. Esto implica que cada producto está asignado a una orden concreta.
 
-- En la consulta de órdenes debes usar el alias `'Products'` para incluir los productos relacionados con la orden.
-
-- La relación muchos a muchos entre productos y categorías está correctamente definida usando la tabla **ProductCategory**.
-
-- La tabla **Token** sirve para controlar la validez de sesiones y tokens JWT activos.
-
-- Las validaciones en **User** aseguran que no se puedan crear usuarios sin nombre ni email válido.
-
-- Las migraciones deben respetar este esquema para que las claves foráneas y relaciones funcionen correctamente.
-- Solo se permite una compra por usuario
-
-- Validaciones en modelos para asegurar datos correctos
-
-- Envío de mails para confirmación usando nodemailer
 ## Comandos útiles
 
 - `npm install` — instalar dependencias
@@ -339,3 +319,8 @@ Esto levantará el servidor con nodemon para recarga automática.
 - `sequelize db:migrate` — ejecutar migraciones
 
 - `sequelize db:seed:all` — cargar seeders
+----------
+
+# Despedida
+
+## ¡Esperamos que disfrutes de este proyecto de Backend y que aprendas un montón!
