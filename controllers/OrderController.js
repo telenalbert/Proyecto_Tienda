@@ -44,8 +44,13 @@ const OrderController = {
   async getAll(req, res) {
     try {
       const orders = await Order.findAll({
-        include: [Product]
-      });
+        include: [
+        {
+          model: Product,
+          as: 'Products'
+        }
+      ]
+    });
       res.status(200).send(orders);
     } catch (error) {
       console.error("Error al obtener órdenes:", error);

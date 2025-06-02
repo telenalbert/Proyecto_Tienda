@@ -130,7 +130,7 @@ const UserController = {
                 id: req.params.id
             }
         })
-        await Post.destroy({
+        await Order.destroy({
             where: {
                 UserId: req.params.id
             }
