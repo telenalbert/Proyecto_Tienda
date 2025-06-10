@@ -29,10 +29,7 @@ const OrderController = {
               }
             ]
           });
-
           res.status(201).send(ordertWithProducts);
-
-            //res.status(201).send({ msg: 'Order created', order });
         } catch (error) {
             console.log("Error al crear el pedido", error);
             res.status(500).send({ error: 'Error when creating order', error });

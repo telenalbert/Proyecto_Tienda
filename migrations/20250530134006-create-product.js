@@ -20,14 +20,12 @@ module.exports = {
       },
       orderId: {
         type: Sequelize.INTEGER,
-        /*código extra para poder ver la relación product-order en Workbench - aún no se ve*/
         references: {
-          model: 'Orders', // nombre de la tabla referenciada
+          model: 'Orders',
           key: 'id'
         },
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL'
-        /*fin del código extra*/
       },
       createdAt: {
         allowNull: false,

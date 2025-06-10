@@ -15,7 +15,6 @@ module.exports = (sequelize, DataTypes) => {
       as: 'Products'
     });
       Order.belongsTo(models.User)
-      // define association here
     }
   }
   Order.init({

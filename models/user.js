@@ -12,24 +12,9 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       User.hasOne(models.Order)
       User.hasMany(models.Token)
-      // define association here
     }
   }
 
-  //COdigo DE TRINI
-//   User.init({
-//     fullName: DataTypes.STRING,
-//     email: DataTypes.STRING,
-//     password: DataTypes.STRING,
-//     role: DataTypes.STRING
-//   }, {
-//     sequelize,
-//     modelName: 'User',
-//   });
-//   return User;
-// };
-
-//Código Bea para validaciones de user:
 User.init({
     fullName: {
     type: DataTypes.STRING,

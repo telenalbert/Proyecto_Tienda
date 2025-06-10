@@ -1,4 +1,6 @@
 const { Category, Product } = require('../models/index.js');
+
+
 //CREATE
 const CategoryController = {
   async create(req, res) {
@@ -10,6 +12,8 @@ const CategoryController = {
       res.status(500).send({ error: 'Error when creating category' });
     }
   },
+
+
 //UPDATE
   async update(req, res) {
     try {
@@ -24,6 +28,8 @@ const CategoryController = {
       });
     }
   },
+
+
  //DELETE
   async delete(req, res) {
     try {
@@ -59,6 +65,8 @@ const CategoryController = {
       });
     }
   },
+
+
 //GET BY NAME
   async getByName(req, res) {
     try {
@@ -86,7 +94,7 @@ const CategoryController = {
           {
             model: Product,
             as: "Products",
-            through: { attributes: [] } // Oculta la tabla intermedia
+            through: { attributes: [] } 
           }
         ]
       });

@@ -8,7 +8,7 @@ module.exports = {
         nameProduct: 'The Legend of Zelda',
         descriptionProduct: 'Juego de aventuras y exploración en un mundo abierto',
         price: 59.99,
-        orderId: 1, // Asegúrate de que esta Order exista
+        orderId: 1,
         createdAt: new Date(),
         updatedAt: new Date(),
       },

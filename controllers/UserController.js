@@ -1,19 +1,18 @@
 
 const { User, Order, Token, Sequelize } = require('../models/index.js');
-const { Op } = Sequelize
-const bcrypt = require("bcryptjs")
-const jwt = require("jsonwebtoken");
-const transporter = require('../config/nodemailer.js');
-const { jwt_secret } = require("../config/config.json")["development"]
+const { Op }                            = Sequelize
+const bcrypt                            = require("bcryptjs")
+const jwt                               = require("jsonwebtoken");
+const transporter                       = require('../config/nodemailer.js');
+const { jwt_secret }                    = require("../config/config.json")["development"]
 
-//const index = require('../models/index.js');
-//index.User
 
 const UserController = {
+
+//Create
+
     async create(req, res, next) {
         try {
-            //req.body.role = "user"
-            //const user = await User.create(req.body)
             const password = await bcrypt.hash(req.body.password, 10)
             const user = await User.create({ ...req.body, password: password, confirmed: false, role: "user" })
             const emailToken = jwt.sign({ email: req.body.email }, jwt_secret, { expiresIn: '48h' })
@@ -32,10 +31,10 @@ const UserController = {
 
         } catch (error) {
             console.error(error)
-            //next(error)
-            res.status(500).send(error) //sustituido por next(error)
+            res.status(500).send(error)
         }
     },
+//Login
     async login(req, res) {
         try {
             const user = await User.findOne({
@@ -66,6 +65,7 @@ const UserController = {
             res.status(500).send(error)
         }
     },
+//Get All
     async getAll(req, res) {
         try {
             const users = await User.findAll({
@@ -77,6 +77,7 @@ const UserController = {
             res.status(500).send(error)
         }
     },
+//Update
     async update(req, res) {
         await User.update(req.body,
             {
@@ -86,6 +87,7 @@ const UserController = {
             })
         res.send('Usuario actualizado con éxito');
     },
+//Confirm
     async confirm(req, res) {
     try {
         const token = req.params.emailToken;
@@ -108,6 +110,7 @@ const UserController = {
         res.status(500).send("Error al confirmar el usuario");
     }
 },
+//Logout
     async logout(req, res) {
         try {
             await Token.destroy({
@@ -124,6 +127,7 @@ const UserController = {
             res.status(500).send({ message: 'hubo un problema al tratar de desconectarte' })
         }
     },
+//Delete
     async delete(req, res) {
         await User.destroy({
             where: {

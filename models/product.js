@@ -19,7 +19,6 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "orderId",
         as: "Orders"
       });
-      // define association here
     }
   }
 

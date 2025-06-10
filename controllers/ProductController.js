@@ -1,13 +1,12 @@
-const { where }             = require("sequelize");
+const { where }                        = require("sequelize");
 const { Product, Category, Sequelize } = require("../models");
-const { Op }                = Sequelize
-const product               = require("../models/product");
+const { Op }                           = Sequelize
+const product                          = require("../models/product");
 
 
 const ProductController = {
   
   //Controlador CREAR
-  
   async insert(req, res) {
     try {
       if (!req.body.nameProduct || !req.body.price) {
@@ -52,10 +51,9 @@ const ProductController = {
     }
   },
 
-  //Controlador UPDATE
 
+  //Controlador UPDATE
   async update(req, res) {
-    
     try {
       await Product.update(req.body,
             {
@@ -74,7 +72,6 @@ const ProductController = {
 
 
   //Controlador DELETE
-
     async delete(req, res) {
             await Product.destroy({
                 where: {
@@ -86,8 +83,8 @@ const ProductController = {
             )
         },
 
-  // Controlador GET ALL
 
+  // Controlador GET ALL
   async getAll(req, res) {
         try {
             const product = await Product.findAll({
@@ -106,7 +103,6 @@ const ProductController = {
     },
 
     //Controlador Get by Price
-
     async getbyPrice(req,res){
       try {
         const price = parseFloat(req.params.price);
@@ -126,7 +122,6 @@ const ProductController = {
     },
 
     //Controlador Ordenar por Precio
-
     async orderByPrice (req, res){
       try {
         const product = await Product.findAll({
@@ -140,7 +135,6 @@ const ProductController = {
     },
 
     // Controlador Get by ID
-
     async getById(req, res) {
         try {
             const product = await Product.findByPk(req.params.id, {
@@ -158,7 +152,6 @@ const ProductController = {
     },
 
     //Controlador Get by NAME
-
     async getOneByName(req, res) {
         try {
             const product = await Product.findOne({
